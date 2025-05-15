@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tembak Perempuan</title>
+    <link rel="stylesheet" href="tembak.css">
+</head>
+<body>
+    <div class="container">
+        <div class="bubble-1"></div>
+        <div class="bubble-2"></div>
+        <div class="content">
+            <div class="heart-icon">❤️</div>
+            <h1>Maukah kamu menjadi pacarku?</h1>
+            
+            <div id="choiceSection" class="buttons">
+                <button id="yesBtn">Ya</button>
+                <button id="noBtn">Tidak</button>
+            </div>
+            
+            <div id="resultSection" class="result" style="display: none;">
+                <div id="yesResult" style="display: none;">
+                    <p class="yes-message">Mau jadi pacar kamu! ❤️</p>
+                    <div class="hearts-container">
+                        <span class="small-heart" style="animation-delay: 0s;">❤️</span>
+                        <span class="small-heart" style="animation-delay: 0.2s;">❤️</span>
+                        <span class="small-heart" style="animation-delay: 0.4s;">❤️</span>
+                        <span class="small-heart" style="animation-delay: 0.6s;">❤️</span>
+                        <span class="small-heart" style="animation-delay: 0.8s;">❤️</span>
+                    </div>
+                </div>
+                <div id="noResult" style="display: none;">
+                    <p class="no-message">Aku tidak mau jadi pacar kamu 💔</p>
+                </div>
+                <button class="try-again" id="tryAgainBtn">Coba lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const choiceSection = document.getElementById('choiceSection');
+        const resultSection = document.getElementById('resultSection');
+        const yesResult = document.getElementById('yesResult');
+        const noResult = document.getElementById('noResult');
+        const tryAgainBtn = document.getElementById('tryAgainBtn');
+
+        // Add event listeners
+        yesBtn.addEventListener('click', handleYesClick);
+        noBtn.addEventListener('click', handleNoClick);
+        noBtn.addEventListener('mouseover', moveNoButton);
+        tryAgainBtn.addEventListener('click', resetChoices);
+
+        // Handle Yes button click
+        function handleYesClick() {
+            choiceSection.style.display = 'none';
+            resultSection.style.display = 'block';
+            yesResult.style.display = 'block';
+            noResult.style.display = 'none';
+        }
+
+        // Handle No button click
+        function handleNoClick() {
+            choiceSection.style.display = 'none';
+            resultSection.style.display = 'block';
+            yesResult.style.display = 'none';
+            noResult.style.display = 'block';
+        }
+
+        // Move No button when hovered
+        function moveNoButton() {
+            const containerWidth = document.querySelector('.container').offsetWidth - noBtn.offsetWidth;
+            const containerHeight = document.querySelector('.container').offsetHeight - noBtn.offsetHeight;
+            
+            const newTop = Math.floor(Math.random() * 80);
+            const newLeft = Math.floor(Math.random() * 80);
+            
+            noBtn.style.position = 'relative';
+            noBtn.style.top = `${newTop}%`;
+            noBtn.style.left = `${newLeft}%`;
+        }
+
+        // Reset choices
+        function resetChoices() {
+            choiceSection.style.display = 'flex';
+            resultSection.style.display = 'none';
+            noBtn.style.position = 'relative';
+            noBtn.style.top = '0';
+            noBtn.style.left = '0';
+        }
+    </script>
+</body>
+</html>
